@@ -1,7 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require(app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+const cookieParser = require("cookie-parser");
+
+const app= express();
+
+app.use(express.json());
 app.use(cookieParser());
 
 // Database connection
@@ -14,6 +17,6 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(8000, () => {
+  console.log(`Server is running on port :8000`);
 });
