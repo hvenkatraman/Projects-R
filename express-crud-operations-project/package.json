@@ -5,6 +5,7 @@
   "scripts": {
     "start": "nodemon index.js",
     "test": "nodemon test.js",
+    "test1": "nodemon test1.js",
     "revision": "nodemon revision.js",
     "md": "nodemon mongoose-db.js",
     "sc": "nodemon index-sc.js",
