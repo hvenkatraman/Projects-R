@@ -25,5 +25,27 @@
     {console.log(`server started sucessfully at port:${port}`)});
 
 
+    const react=require("react");
 
+    const express=require("express");
+    const mongoose=require("mongoose");
+    const cookieParser=require("cookie-parser");
+    const os=require("os");
+    const app=express();
+    console.log("");
+    console.log(yeue);
+    console.log("Hello World",venkyHello_World);
+    
+    
+    
+    const {a,b,c}=req.body
+        const uri="mongodb://localhost:27017/testdb"
+        mongoose.connect(uri)
+        .then(()=>
+        {console.log("Mongodb database connection established")})
+        .catch((error)=>{console.log(error)});
+    
+    
+
+    
 
