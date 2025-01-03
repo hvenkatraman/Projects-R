@@ -1,5 +1,7 @@
 const express=require("express");
 const mongoose=require("mongoose");
+const path=require("path");
+
 
 //init app
 
@@ -9,6 +11,7 @@ const port=process.envPORT || 8000;
 //view engine
 
 app.set("view engine","ejs");
+app.use(express.static(path.join(__dirname,"public")));
 
 const uri="mongodb://localhost:27017/testdb"
 
@@ -18,19 +21,19 @@ mongoose.connect(uri)
 
 app.get("/",(req,res,next)=>
 {
-    console.log("Rendered index.js sucessfully");
+    console.log("Rendered listtodo sucessfully");
     
-    res.status(201).render("listtodo.ejs");
+    res.status(201).render("index.ejs",{title:"List-Todo"});
 });
 app.get("/newtodo",(req,res,next)=>
 {
-    res.status(201).render("newtodo.ejs");
+    res.status(201).render("newtodo.ejs",{title:"New-Todo"});
 })
 app.get("/updatetodo",(req,res,next)=>
 {
 try{
 
-    res.status(201).render("updatetodo.ejs");
+    res.status(201).render("updatetodo.ejs",{title:"Update-Todo"});
 
     }catch(error)
     {
@@ -41,7 +44,7 @@ app.get("/deletetodo",(req,res,next)=>
 {
 try{
 
-    res.status(201).render("deletetodo.ejs");
+    res.status(201).render("deletetodo.ejs",{title:"Delete-Todo"});
 
     }catch(error)
     {

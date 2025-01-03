@@ -3,29 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo App</title>
-    <link rel="stylesheet" href="style.css">
+    <title><%= title %>|Todo App|</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="todo-h">
-        <h1>Todo App</h1>
-        <div class="todo-btn">
-            <button>Add Todo</button>
+    <div class="todo-container">
+        <h2>Todo App</h2>
+        <h3>List todo</h3>
+        <div class="btn">
+            <a href="/newtodo" class="btn">New Todo</a>
             <div class="todo-table">
-                <tr>
-                    <th>item1</th>
-                    <th>item2</th>
-                    <th>item3</th>
-                    <th>item4</th>
-                    <th>item5</th>
-                </tr>
-                <tr>
-                    <th>item1</th>
-                    <th>item2</th>
-                    <th>item3</th>
-                    <th>item4</th>
-                    <th>item5</th>
-                </tr>
+                <table>
+                     <tr>
+                        <th>Todo Title</th>
+                        <th>Todo Description</th>
+                        <th>Created On</th>
+                        <th>Updated On</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr>
+                         <td>item1</td>
+                         <td>item2</td>
+                         <td>item3</td>
+                         <td>item4</td>
+                         <td>
+                         <a class="btn" href="/updatetodo">Update</a>
+                         <a class="btn" href="/deletetodo">Delete</a>
+
+
+                         </td>
+                     </tr>
+                </table>   
             </div>
         </div>
     </div>

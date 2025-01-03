@@ -1,0 +1,57 @@
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h2, a, label, input {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+width:100%;
+height:auto;
+border:5px outset /*#7a3002*/#05092e;
+background-color:lightgrey;
+}
+.todo-container{
+margin:0px;
+padding:0px;
+background-color:#5c629e;
+text-align :center;
+color:#dce0f7;
+;
+} 
+
+input{
+background-color:#5c629e;
+border:1px outset /*#7a3002*/#05092e;
+
+}
+
+
+input::placeholder{
+background-color:#1b1c26;
+color:#a3a6c2;
+
+}
+
+table{
+
+  table-layout:fixed;
+  width:100%;
+  border-collapse:collapse;
+
+}
+
+
+tr,td,th{
+
+  border:2px solid grey;
+  padding: 5px;
+  overflow:scroll;
+  text-align:left;
+  overflow :hidden;
+}
