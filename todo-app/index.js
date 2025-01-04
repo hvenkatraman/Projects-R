@@ -25,6 +25,15 @@ app.get("/",(req,res,next)=>
     
     res.status(201).render("index.ejs",{title:"List-Todo"});
 });
+
+app.get("/test",(req,res,next)=>
+
+{
+    console.log(app.get('views'));
+    res.render("test");
+});
+
+
 app.get("/newtodo",(req,res,next)=>
 {
     res.status(201).render("newtodo.ejs",{title:"New-Todo"});
