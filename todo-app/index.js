@@ -1,11 +1,18 @@
 const express=require("express");
 const mongoose=require("mongoose");
 const path=require("path");
+const bodyParser=require("body-parser");
+
+
+
 
 
 //init app
 
 const app=express();
+
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 const port=process.envPORT || 8000;
 
 //view engine
@@ -13,19 +20,44 @@ const port=process.envPORT || 8000;
 app.set("view engine","ejs");
 app.use(express.static(path.join(__dirname,"public")));
 
-const uri="mongodb://localhost:27017/testdb"
+const uri="mongodb://localhost:27017/tododb"
 
 mongoose.connect(uri)
 .then(()=>{console.log("Mongodb database connection established")})
 .catch((error)=>{console.log(error)});
 
-app.get("/",(req,res,next)=>
-{
-    console.log("Rendered listtodo sucessfully");
+const todoSchema=mongoose.Schema({
+    title:String,
+    description:{type:String,required:true}
     
-    res.status(201).render("index.ejs",{title:"List-Todo"});
-});
+},{timestamps:true});
 
+
+
+const Todo=mongoose.model("todo",todoSchema);
+
+
+app.get("/",async(req,res,next)=>
+    {
+try  
+{
+
+    console.log("Rendered listtodo sucessfully");
+    const todos= await Todo.find({});
+    console.log(todos);
+    //console.log(Array.isArray(todos)); // Should output: true
+    
+    
+    res.status(201).render("index.ejs",{title:"List-Todo",todos});
+}
+
+catch(error){
+    res.status(500).json({"message":error.stack});
+    
+    
+}
+    
+})
 app.get("/test",(req,res,next)=>
 
 {
@@ -60,6 +92,27 @@ try{
         console.log(error.measage);
     }
 });
+app.post("/newtodo",async(req,res,next)=>
+{
+try{
+   const {title,description}=req.body;
+    // const data= req.body;
+    // console.log(data);
+    
+    
+
+    const newTodo = new Todo({title,description});
+    await newTodo.save();
+
+    res.redirect("/");
+
+    }catch(error)
+    {
+        console.log(error.measage);
+    }
+});
+
+
 
 //listen to server
 

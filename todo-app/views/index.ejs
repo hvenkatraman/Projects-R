@@ -16,17 +16,20 @@
                         <th>Actions</th>
                     </tr>
                     <tr>
-                         <td>item1</td>
-                         <td>item2</td>
-                         <td>item3</td>
-                         <td>item4</td>
-                         <td>
+                    <% for(let i=0; i<(todos.length); i++){ %>
+                    
+                    
+                    <td><%=todos[i].title %></td>
+                    <td><%=todos[i].description %></td>
+                    <td><%=todos[i].createdAt %></td>
+                    <td><%=todos[i].updatedAt %></td>
+                     <td>
                          <a class="btn" href="/updatetodo">Update</a>
                          <a class="btn" href="/deletetodo">Delete</a>
-
-
-                         </td>
+                    </td>
                      </tr>
+                        <% 
+                        } %>
                 </table>   
             </div>
         </div>

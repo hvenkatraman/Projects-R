@@ -8,6 +8,8 @@
     <div>
         <a class="button" href="/">Back</a>
     </div>
+
+ <form action="/newtodo" method="post">    
     <div class="form-group">
     <label for="title">Enter todo title</label>
     <br/>
@@ -15,9 +17,10 @@
      </div>
 
     <div class="form-group">
-     <label for="desc">Enter todo description</label>
+     <label for="depscription">Enter todo description</label>
     <br/>
-    <input id="desc-input" placeholder="Enter todo description here" type="text" name="desc"/>
+    <input id="desc-input" placeholder="Enter todo description here" type="text" name="description">
      </div>
-     <div><a href="#">Submit</a></div>   
+     <button class="button" type="submit">Save</button> 
+ </form>
 </div>
