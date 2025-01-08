@@ -1,27 +1,12 @@
-const express=require("express");
-const path=require("path");
-const bodyParser=require("body-parser");
-const connectMongodb=require("./init/mongodb.js");
-const todoRoute=require("./routes/todo.js");
 
-//init app
+const app=require("./app");
+const dotenv=require("dotenv");
 
-const app=express();
+dotenv.config();
 
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+const port=process.env.PORT || 8000;
+console.log (process.env.NAME);
 
-const port=process.envPORT || 8000;
-
-//view engine
-
-
-
-app.set("view engine","ejs");
-app.use(express.static(path.join(__dirname,"public")));
-
-connectMongodb();
-app.use("/",todoRoute);
 
 //listen to server
 
