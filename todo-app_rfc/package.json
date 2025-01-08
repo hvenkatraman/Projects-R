@@ -1,7 +1,7 @@
 {
-  "name": "todo-app",
+  "name": "todo-app_rfc",
   "version": "1.0.0",
-  "description": "Simple todo App",
+  "description": "Simple todo App-with code refactored",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"

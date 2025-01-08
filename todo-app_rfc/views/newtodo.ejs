@@ -1,0 +1,26 @@
+<%- include("partials/header") %>
+<%- include("partials/footer") %>
+<div class="todo-container">
+
+    <div>
+         <h2 class="todo">New Todo</h2>
+    </div>
+    <div>
+        <a class="button" href="/">Back</a>
+    </div>
+
+ <form action="/newtodo" method="post">    
+    <div class="form-group">
+    <label for="title">Enter todo title</label>
+    <br/>
+    <input id="title-input"placeholder="Enter todo input here" type="text" name="title"/>
+     </div>
+
+    <div class="form-group">
+     <label for="depscription">Enter todo description</label>
+    <br/>
+    <input id="desc-input" placeholder="Enter todo description here" type="text" name="description">
+     </div>
+     <button class="button" type="submit">Save</button> 
+ </form>
+</div>
