@@ -1,11 +1,9 @@
 
 const app=require("./app");
-const dotenv=require("dotenv");
 
-dotenv.config();
 
 const port=process.env.PORT || 8000;
-console.log (process.env.NAME);
+//console.log (process.env.NAME);
 
 
 //listen to server

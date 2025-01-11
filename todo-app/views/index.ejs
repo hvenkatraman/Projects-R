@@ -24,8 +24,8 @@
                     <td><%=moment(todos[i].createdAt).format("MMM  DD, YYYY, HH mm ss" ) %></td>
                     <td><%=moment(todos[i].updatedAt).format("MMM DD, YYYY, HH mm ss") %></td>
                      <td>
-                         <a class="btn" href="/updatetodo">Update</a>
-                         <a class="btn" href="/deletetodo">Delete</a>
+                         <a class="btn" href="/updatetodo?id=<%= todos[i]._id %>">Update</a>
+                         <a class="btn" href="/deletetodo?id=<%= todos[i]._id %>">Delete</a>
                     </td>
                      </tr>
                         <% 

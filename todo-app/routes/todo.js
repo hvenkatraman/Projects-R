@@ -10,7 +10,9 @@ router.get("/",todo.homeController);
 router.get("/test",todo.testController);
 router.get("/newtodo",todo.newTodoPageController);
 router.get("/updatetodo",todo.updateTodoPageController);
+router.post("/updatetodo/:id",todo.updateTodoController);
 router.get("/deletetodo",todo.deleteTodoPageController);
+router.get("/deletetodo_confirmation",todo.deleteTodoConfirmationController);
 router.post("/newtodo",todo.newTodoController);
 
-module.exports = router;
+module.exports = router
