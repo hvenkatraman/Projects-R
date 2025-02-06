@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image to PDF Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <i class="fas fa-file-pdf"></i>
+            Image to PDF
+        </h1>
+        
+        <!-- Drop Zone -->
+        <div class="drop-zone" id="dropZone">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Click to Upload Images</p>
+            <p class="watermark">Supports JPG, PNG</p>
+        </div>
+        
+        <!-- Hidden File Input -->
+        <input type="file" id="fileInput" multiple accept="image/*" hidden>
+        
+        <!-- Preview Area -->
+        <div id="preview"></div>
+        
+        <!-- Convert Button -->
+        <button id="convertBtn">
+            <i class="fas fa-magic"></i>
+            Convert to PDF
+        </button>
+    </div>
+
+    <script>
+        async function convertToPDF() {
+    if (!files.length) return alert('Upload images first!');
+
+    try {
+        // Validate files first
+        const invalidFiles = files.filter(file =>
+            !['image/jpeg', 'image/png'].includes(file.type)
+        );
+
+        if (invalidFiles.length > 0) {
+            return alert('Only JPG/PNG images are supported!');
+        }
+
+        convertBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Converting...';
+        convertBtn.disabled = true;
+
+        const formData = new FormData();
+        files.forEach(file => formData.append('images', file));
+
+        const response = await fetch('/convert', {
+            method: 'POST',
+            body: formData
+        });
+
+        // Check for errors
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || 'Conversion failed');
+        }
+
+        // Verify PDF content
+        const blob = await response.blob();
+        if (blob.size === 0 || blob.type !== 'application/pdf') {
+            throw new Error('Invalid PDF received');
+        }
+
+        // Create download link
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = 'converted.pdf';
+        document.body.appendChild(a);
+        a.click();
+
+        // Cleanup
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+
+    } catch (error) {
+        alert(error.message || 'Failed to convert images');
+    } finally {
+        convertBtn.innerHTML = '<i class="fas fa-magic"></i> Convert to PDF';
+        convertBtn.disabled = false;
+    }
+}
+    </script>
+</body>
+</html>
